@@ -12,25 +12,25 @@ const Cotizador = ({resultado}) => {
 
       <Text style={styles.texto}>
         Precio más alto del día:{''}
-        <Text style={styles.span}>{resultado.HIGHDAY} </Text>
+        <Text style={styles.span}> {resultado.HIGHDAY} </Text>
       </Text>
 
       <Text style={styles.texto}>
         {' '}
         Precio más bajo del día:{''}
-        <Text style={styles.span}>{resultado.LOWDAY} </Text>
+        <Text style={styles.span}> {resultado.LOWDAY} </Text>
       </Text>
 
       <Text style={styles.texto}>
         {' '}
-        Variación ultimas 24 horas
-        <Text style={styles.span}>{resultado.CHANGEPCT24HOUR} </Text>
+        Variación ultimas 24 horas:
+        <Text style={styles.span}> {resultado.CHANGEPCT24HOUR} </Text>
       </Text>
 
       <Text style={styles.texto}>
         {' '}
         Actualización: {''}
-        <Text style={styles.span}>{resultado.LASTUPDATE} </Text>
+        <Text style={styles.span}> {resultado.LASTUPDATE} </Text>
       </Text>
     </View>
   );
@@ -45,10 +45,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato-Regular',
     fontSize: 18,
     marginBottom: 10,
+    color:'#076FB0',
   },
   precio: {
     fontFamily: 'Lato-Regular',
-    fontSize: 30,
+    fontSize: 25,
     marginBottom: 10,
   },
   span: {

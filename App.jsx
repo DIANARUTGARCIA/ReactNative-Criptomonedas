@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   formulario: {
-    marginHorizontal: '3%',
+    marginHorizontal: '4%',
   },
 });
 

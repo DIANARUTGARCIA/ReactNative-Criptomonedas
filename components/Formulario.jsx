@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   label: {
     fontFamily: 'Lato-Black',
     textTransform: 'uppercase',
-    fontSize: 22,
+    fontSize: 20,
     marginVertical: 20,
   },
   btnCotizar: {
