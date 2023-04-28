@@ -1,6 +1,13 @@
 import React, {useEffect, useState} from 'react';
 
-import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import Header from './components/Header';
 import Formulario from './components/Formulario';
 import Cotizador from './components/Cotizador';
@@ -11,39 +18,52 @@ function App() {
   const [criptomoneda, guardarCriptomoneda] = useState('');
   const [consultarAPI, guardarConsultarAPI] = useState(false);
   const [resultado, guardarResultado] = useState({});
+  const [cargando, guardarCargando] = useState(false);
 
   useEffect(() => {
     const cotizarCriptomoneda = async () => {
       if (consultarAPI) {
         const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`;
+        guardarCargando(true);
         const resultado = await axios.get(url);
-        guardarResultado(resultado.data.DISPLAY[criptomoneda][moneda]);
-        guardarConsultarAPI(false);
+
+        setTimeout(() => {
+          guardarResultado(resultado.data.DISPLAY[criptomoneda][moneda]);
+          guardarConsultarAPI(false);
+          guardarCargando(false);
+        }, 3000);
       }
     };
     cotizarCriptomoneda();
   }, [consultarAPI]);
 
+  const componente = cargando ? (
+    <ActivityIndicator size={'large'} color={'#1290DB'} />
+  ) : (
+    <Cotizador resultado={resultado} />
+  );
+
   return (
     <>
-      <View style={styles.contenido}>
-        <Header />
-        <Image
-          style={styles.imagen}
-          source={require('./assets/img/cryptomonedas.png')}
-        />
-        <View style={styles.formulario}>
-          <Formulario
-            moneda={moneda}
-            criptomoneda={criptomoneda}
-            guardarMoneda={guardarMoneda}
-            guardarCriptomoneda={guardarCriptomoneda}
-            guardarConsultarAPI={guardarConsultarAPI}
+      <ScrollView>
+        <View style={styles.contenido}>
+          <Header />
+          <Image
+            style={styles.imagen}
+            source={require('./assets/img/cryptomonedas.png')}
           />
-
-          <Cotizador resultado={resultado} />
+          <View style={styles.formulario}>
+            <Formulario
+              moneda={moneda}
+              criptomoneda={criptomoneda}
+              guardarMoneda={guardarMoneda}
+              guardarCriptomoneda={guardarCriptomoneda}
+              guardarConsultarAPI={guardarConsultarAPI}
+            />
+          </View>
+          <View style={{marginTop: 40}}>{componente}</View>
         </View>
-      </View>
+      </ScrollView>
     </>
   );
 }

@@ -2,22 +2,58 @@ import React from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 
 const Cotizador = ({resultado}) => {
-
   if (Object.keys(resultado).length === 0) return null;
 
   return (
-    <View>
-      <Text>El precio del bitcoin es:{resultado.PRICE} </Text>
+    <View style={styles.resultado}>
+      <Text style={styles.precio}>
+        <Text style={styles.span}>{resultado.PRICE} </Text>
+      </Text>
+
+      <Text style={styles.texto}>
+        Precio más alto del día:{''}
+        <Text style={styles.span}>{resultado.HIGHDAY} </Text>
+      </Text>
+
+      <Text style={styles.texto}>
+        {' '}
+        Precio más bajo del día:{''}
+        <Text style={styles.span}>{resultado.LOWDAY} </Text>
+      </Text>
+
+      <Text style={styles.texto}>
+        {' '}
+        Variación ultimas 24 horas
+        <Text style={styles.span}>{resultado.CHANGEPCT24HOUR} </Text>
+      </Text>
+
+      <Text style={styles.texto}>
+        {' '}
+        Actualización: {''}
+        <Text style={styles.span}>{resultado.LASTUPDATE} </Text>
+      </Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  resultado:{},
-  texto:{},
-  precio:{},
-  span:{},
-
+  resultado: {
+    backgroundColor: '#D7EAF6',
+    padding: 20,
+  },
+  texto: {
+    fontFamily: 'Lato-Regular',
+    fontSize: 18,
+    marginBottom: 10,
+  },
+  precio: {
+    fontFamily: 'Lato-Regular',
+    fontSize: 30,
+    marginBottom: 10,
+  },
+  span: {
+    fontFamily: 'Lato-Black',
+  },
 });
 
 export default Cotizador;
