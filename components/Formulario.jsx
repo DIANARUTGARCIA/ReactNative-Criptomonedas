@@ -24,7 +24,7 @@ const Formulario = ({
       mostrarAlerta();
       return;
     }
-    guardarConsultarAPI(true)
+    guardarConsultarAPI(true);
   };
 
   const mostrarAlerta = () => {

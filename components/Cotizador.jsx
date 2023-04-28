@@ -1,9 +1,23 @@
-import React from 'react'
+import React from 'react';
+import {View, StyleSheet, Text} from 'react-native';
 
-const Cotizador = () => {
+const Cotizador = ({resultado}) => {
+
+  if (Object.keys(resultado).length === 0) return null;
+
   return (
-    <div>Cotizador</div>
-  )
-}
+    <View>
+      <Text>El precio del bitcoin es:{resultado.PRICE} </Text>
+    </View>
+  );
+};
 
-export default Cotizador
+const styles = StyleSheet.create({
+  resultado:{},
+  texto:{},
+  precio:{},
+  span:{},
+
+});
+
+export default Cotizador;
